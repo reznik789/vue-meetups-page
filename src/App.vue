@@ -12,13 +12,7 @@
           <v-icon left>mdi-view-module</v-icon>View metups
         </v-btn>
       </v-app-bar>
-      <v-sheet height="400" class="overflow-hidden" style="position: relative;">
-        <v-container class="fill-height">
-          <v-row align="center" justify="center">
-            <v-btn color="pink" dark @click.stop="drawer = !drawer">Toggle</v-btn>
-          </v-row>
-        </v-container>
-
+      <v-sheet class="overflow-hidden" style="position: relative;">
         <v-navigation-drawer v-model="sideNav" absolute temporary>
           <v-list dense>
             <v-list-item v-for="item in menuItems" :key="item.title" link>
@@ -32,8 +26,11 @@
             </v-list-item>
           </v-list>
         </v-navigation-drawer>
+        <router-view/>
+
       </v-sheet>
     </v-content>
+
   </v-app>
 </template>
 
@@ -57,3 +54,4 @@ export default {
   }
 };
 </script>
+
