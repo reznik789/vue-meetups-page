@@ -1,28 +1,59 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-content>
+      <v-app-bar app color="primary" dark>
+        <v-app-bar-nav-icon @click="sideNav = !sideNav"></v-app-bar-nav-icon>
+        <div class="d-flex align-center">
+          <v-toolbar-title>DevMetup</v-toolbar-title>
+        </div>
+
+        <v-spacer></v-spacer>
+        <v-btn class="ma-2" tile flat color="primary">
+          <v-icon left>mdi-view-module</v-icon>View metups
+        </v-btn>
+      </v-app-bar>
+      <v-sheet height="400" class="overflow-hidden" style="position: relative;">
+        <v-container class="fill-height">
+          <v-row align="center" justify="center">
+            <v-btn color="pink" dark @click.stop="drawer = !drawer">Toggle</v-btn>
+          </v-row>
+        </v-container>
+
+        <v-navigation-drawer v-model="sideNav" absolute temporary>
+          <v-list dense>
+            <v-list-item v-for="item in menuItems" :key="item.title" link>
+              <v-list-item-icon>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-navigation-drawer>
+      </v-sheet>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  name: "App",
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  components: {},
+
+  data() {
+    return {
+      sideNav: true,
+      menuItems: [
+        { title: "View metups", icon: "mdi-view-module" },
+        { title: "Organize metup", icon: "mdi-home" },
+        { title: "Account", icon: "mdi-account" },
+        { title: "Sign in", icon: "mdi-login-variant" },
+        { title: "Log out", icon: "mdi-logout-variant" }
+      ]
+    };
+  }
+};
+</script>
